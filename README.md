@@ -16,5 +16,5 @@ file.HasHeaders = true;
 file.CheckTableExists = true;
 file.InsertSpacing = 250;
 
-await file.Convert("destination.sql")
+await file.Convert("destination.sql");
 ```
