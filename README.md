@@ -1,3 +1,5 @@
+[![AppVeyor](https://ci.appveyor.com/api/projects/status/github/sqlizer-io/sqlizer-client-dotnet?svg=true)](https://ci.appveyor.com/api/projects/status/github/sqlizer-io/sqlizer-client-dotnet?svg=true)
+
 # sqlizer-client-dotnet
 
 A .NET Client for [SQLizer](https://sqlizer.io)'s API
