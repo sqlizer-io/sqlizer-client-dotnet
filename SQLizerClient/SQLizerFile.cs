@@ -83,14 +83,10 @@ namespace SQLizerClient
 
                         var form = new MultipartFormDataContent();
                         var byteContent = new ByteArrayContent(bytes, 0, n);
-                        byteContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
-                        {
-                            FileName = Path.GetFileName(InputFilePath),
-                            Name = "file",
-                        };
-                        form.Add(byteContent, "file");
+                        byteContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+                        form.Add(byteContent, "file", Path.GetFileName(InputFilePath));
                         form.Add(new StringContent((++partNumber).ToString()), "PartNumber");
-
+                        
                         var uploadDataResponse = await client.PostAsync($"https://sqlizer.io/api/files/{ID}/data/", form);
             
                         if (uploadDataResponse.IsSuccessStatusCode == false)
