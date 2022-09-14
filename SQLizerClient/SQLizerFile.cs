@@ -65,9 +65,9 @@ namespace SQLizerClient
 
             if (createFileResponse.IsSuccessStatusCode)
             {
-                var sqlizerProperties =  JsonConvert.DeserializeObject<Dictionary<string, string>>(await createFileResponse.Content.ReadAsStringAsync());
+                var sqlizerProperties =  JsonConvert.DeserializeObject<Dictionary<string, object>>(await createFileResponse.Content.ReadAsStringAsync());
 
-                ID = sqlizerProperties["ID"];
+                ID = sqlizerProperties["ID"].ToString();
 
                 // Upload the data
                 using (var file = File.Open(InputFilePath, FileMode.Open))
@@ -108,9 +108,9 @@ namespace SQLizerClient
 
                 if (updateStatusResponse.IsSuccessStatusCode)
                 {
-                    sqlizerProperties =  JsonConvert.DeserializeObject<Dictionary<string, string>>(await updateStatusResponse.Content.ReadAsStringAsync());
+                    sqlizerProperties =  JsonConvert.DeserializeObject<Dictionary<string, object>>(await updateStatusResponse.Content.ReadAsStringAsync());
 
-                    Status = sqlizerProperties["Status"]; 
+                    Status = sqlizerProperties["Status"].ToString(); 
 
                     // Poll for updates to the status
                     while ((Status != "Complete") && (Status != "Failed"))
@@ -121,8 +121,8 @@ namespace SQLizerClient
 
                         if (getStatusResponse.IsSuccessStatusCode)
                         {
-                            sqlizerProperties =  JsonConvert.DeserializeObject<Dictionary<string, string>>(await getStatusResponse.Content.ReadAsStringAsync());
-                            Status = sqlizerProperties["Status"];
+                            sqlizerProperties =  JsonConvert.DeserializeObject<Dictionary<string, object>>(await getStatusResponse.Content.ReadAsStringAsync());
+                            Status = sqlizerProperties["Status"].ToString();
                         }
                         else
                         {
@@ -135,7 +135,7 @@ namespace SQLizerClient
                         var awsClient = new HttpClient();
 
                         // Download the converted file
-                        var downloadResultResponse = await awsClient.GetAsync(sqlizerProperties["ResultUrl"]);
+                        var downloadResultResponse = await awsClient.GetAsync(sqlizerProperties["ResultUrl"].ToString());
                         if (downloadResultResponse.IsSuccessStatusCode)
                         {
                             var contentStream = await downloadResultResponse.Content.ReadAsStreamAsync();
