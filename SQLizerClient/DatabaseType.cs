@@ -4,6 +4,7 @@ namespace SQLizerClient
     {
         MySQL,
         SQLServer,
-        PostgreSQL
+        PostgreSQL,
+        SQLite
     }
 }
