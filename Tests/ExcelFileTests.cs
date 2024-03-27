@@ -9,9 +9,9 @@ namespace SQLizerClient.Tests
         [Fact]
         public async void TestSimpleXlsx()
         {
-            var file = new SQLizerClient.SQLizerFile("Simple.xlsx");
+            var file = new SQLizerFile("Simple.xlsx");
             
-            file.DatabaseType = SQLizerClient.DatabaseType.MySQL;
+            file.DatabaseType = DatabaseType.MySQL;
             file.TableName = "testing";
             file.HasHeaders = true;
             file.SheetName = "Sheet1";
@@ -37,9 +37,9 @@ namespace SQLizerClient.Tests
         [Fact]
         public async void TestSimpleXls()
         {
-            var file = new SQLizerClient.SQLizerFile("Simple.xls");
+            var file = new SQLizerFile("Simple.xls");
             
-            file.DatabaseType = SQLizerClient.DatabaseType.MySQL;
+            file.DatabaseType = DatabaseType.MySQL;
             file.TableName = "testing";
             file.HasHeaders = true;
             file.SheetName = "Sheet1";

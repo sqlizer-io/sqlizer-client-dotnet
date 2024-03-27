@@ -9,9 +9,9 @@ namespace SQLizerClient.Tests
         [Fact]
         public async void TestSimpleCSV()
         {
-            var file = new SQLizerClient.SQLizerFile("Simple.csv");
+            var file = new SQLizerFile("Simple.csv");
             
-            file.DatabaseType = SQLizerClient.DatabaseType.MySQL;
+            file.DatabaseType = DatabaseType.MySQL;
             file.TableName = "testing";
             file.HasHeaders = true;
             file.CheckTableExists = true;
